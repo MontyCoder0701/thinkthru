@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '/screens/rule_list.dart';
+import '/screens/thought_list.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -8,29 +11,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late final theme = Theme.of(context);
+  int _selectedIndex = 0;
+  List<Widget> _mainScreens = [
+    ThoughtListScreen(),
+    RuleListScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: theme.colorScheme.primaryContainer,
-        title: const Text('My Thoughts'),
-      ),
-      body: ListView(
-        children: const [
-          ListTile(
-            title: Text('Title'),
-            subtitle: Text('Preview Text'),
-            trailing: Text('Date'),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => print('Add new thought'),
-        child: const Icon(Icons.add),
-      ),
+      body: _mainScreens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.psychology_alt_outlined),
@@ -41,6 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Rules',
           ),
         ],
+        onTap: (index) => setState(() {
+          _selectedIndex = index;
+        }),
       ),
     );
   }
