@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/screens/rule_list.dart';
+import 'rule/rule.dart';
 import 'thought/thought.dart';
 
 class HomeScreen extends StatefulWidget {
