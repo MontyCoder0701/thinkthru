@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'thought_detail.dart';
+
 class ThoughtListScreen extends StatefulWidget {
   const ThoughtListScreen({super.key});
 
@@ -24,6 +26,14 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
               overflow: TextOverflow.ellipsis,
             ),
             trailing: Text('1998.07.01'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ThoughtDetailScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),

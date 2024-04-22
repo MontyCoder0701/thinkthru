@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '/screens/rule_list.dart';
-import '/screens/thought_list.dart';
+import 'thought/thought.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
