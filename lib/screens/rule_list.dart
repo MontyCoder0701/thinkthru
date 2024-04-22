@@ -8,13 +8,10 @@ class RuleListScreen extends StatefulWidget {
 }
 
 class _RuleListScreenState extends State<RuleListScreen> {
-  late final theme = Theme.of(context);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: theme.colorScheme.primaryContainer,
         title: Text('My Rules'),
       ),
     );
