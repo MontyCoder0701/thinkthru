@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'rule_detail.dart';
+
 class RuleListScreen extends StatefulWidget {
   const RuleListScreen({super.key});
 
@@ -23,6 +25,14 @@ class _RuleListScreenState extends State<RuleListScreen> {
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const RuleDetailScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),
