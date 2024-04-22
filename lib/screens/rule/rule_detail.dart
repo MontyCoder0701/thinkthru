@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../models/rule.dart';
+
 class RuleDetailScreen extends StatefulWidget {
-  const RuleDetailScreen({super.key});
+  final Rule rule;
+
+  const RuleDetailScreen({
+    required this.rule,
+    super.key,
+  });
 
   @override
   State<RuleDetailScreen> createState() => _RuleDetailScreenState();
@@ -12,7 +19,7 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('1'),
+        title: Text(widget.rule.displayOrder),
         actions: [
           IconButton(
             onPressed: () => print('delete'),
@@ -30,8 +37,7 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
             padding: EdgeInsets.all(24.0),
             child: TextFormField(
               readOnly: true,
-              initialValue:
-                  'This will display the rule you have set for yourself regarding decision making and thought processes.',
+              initialValue: widget.rule.content,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),

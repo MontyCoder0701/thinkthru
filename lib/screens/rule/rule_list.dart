@@ -43,8 +43,8 @@ class _RuleListScreenState extends State<RuleListScreen> {
         itemBuilder: (BuildContext context, int index) {
           final Rule item = _items[index];
           return ListTile(
-            key: Key('${item.order}'),
-            leading: Text('${item.order}'),
+            key: Key('${item.displayOrder}'),
+            leading: Text('${item.displayOrder}'),
             title: Text(
               item.content,
               maxLines: 3,
@@ -54,7 +54,7 @@ class _RuleListScreenState extends State<RuleListScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const RuleDetailScreen(),
+                  builder: (context) => RuleDetailScreen(rule: item),
                 ),
               );
             },
