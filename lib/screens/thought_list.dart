@@ -18,11 +18,15 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
         title: Text('My Thoughts'),
       ),
       body: ListView(
-        children: const [
+        children: [
           ListTile(
-            title: Text('Title'),
-            subtitle: Text('Preview Text'),
-            trailing: Text('Date'),
+            title: Text('Example Title'),
+            subtitle: Text(
+              'Hello, my name is Soo. Today I will be creating this application in Flutter. I love creating new things!',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            trailing: Text('1998.07.01'),
           ),
         ],
       ),
