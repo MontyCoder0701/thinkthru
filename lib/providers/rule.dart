@@ -13,4 +13,8 @@ class RuleProvider with ChangeNotifier {
   void createOne(Rule rule) {
     _resources.add(rule);
   }
+
+  void deleteOne(Rule rule) {
+    _resources.remove(rule);
+  }
 }

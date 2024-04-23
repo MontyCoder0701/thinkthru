@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/rule.dart';
+import '../../providers/rule.dart';
 
 class RuleDetailScreen extends StatefulWidget {
   final int index;
@@ -17,6 +19,8 @@ class RuleDetailScreen extends StatefulWidget {
 }
 
 class _RuleDetailScreenState extends State<RuleDetailScreen> {
+  late final _ruleProvider = context.read<RuleProvider>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +28,10 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
         title: Text((widget.index + 1).toString()),
         actions: [
           IconButton(
-            onPressed: () => print('delete'),
+            onPressed: () {
+              _ruleProvider.deleteOne(widget.rule);
+              Navigator.pop(context);
+            },
             icon: Icon(Icons.delete),
           ),
           IconButton(

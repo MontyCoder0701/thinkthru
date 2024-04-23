@@ -13,7 +13,6 @@ class RuleListScreen extends StatefulWidget {
 }
 
 class _RuleListScreenState extends State<RuleListScreen> {
-  late final _ruleProvider = context.read<RuleProvider>();
   late final _ruleList = context.select((RuleProvider i) => i.resources);
 
   @override
@@ -44,8 +43,8 @@ class _RuleListScreenState extends State<RuleListScreen> {
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
-            onTap: () {
-              Navigator.push(
+            onTap: () async {
+              await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => RuleDetailScreen(
@@ -54,6 +53,9 @@ class _RuleListScreenState extends State<RuleListScreen> {
                   ),
                 ),
               );
+              setState(() {
+                /* rule updated or deleted */
+              });
             },
           );
         },
@@ -66,7 +68,9 @@ class _RuleListScreenState extends State<RuleListScreen> {
               builder: (context) => RuleCreateScreen(),
             ),
           );
-          setState(() {});
+          setState(() {
+            /* rule created */
+          });
         },
         child: const Icon(Icons.add),
       ),
