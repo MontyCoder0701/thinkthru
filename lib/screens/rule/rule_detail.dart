@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import '../../models/rule.dart';
 
 class RuleDetailScreen extends StatefulWidget {
+  final int index;
   final Rule rule;
 
   const RuleDetailScreen({
+    required this.index,
     required this.rule,
     super.key,
   });
@@ -19,7 +21,7 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.rule.displayOrder),
+        title: Text(widget.index.toString()),
         actions: [
           IconButton(
             onPressed: () => print('delete'),

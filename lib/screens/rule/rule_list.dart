@@ -12,8 +12,8 @@ class RuleListScreen extends StatefulWidget {
 
 class _RuleListScreenState extends State<RuleListScreen> {
   final List<Rule> _items = [
-    Rule(order: 0, content: 'This is the first rule example'),
-    Rule(order: 1, content: ' This is the second rule example'),
+    Rule(content: 'This is the first rule example'),
+    Rule(content: ' This is the second rule example'),
   ];
 
   @override
@@ -29,12 +29,6 @@ class _RuleListScreenState extends State<RuleListScreen> {
               newIndex -= 1;
             }
 
-            final oldItem = _items.elementAt(oldIndex);
-            final newItem = _items.elementAt(newIndex);
-
-            oldItem.order = newIndex;
-            newItem.order = oldIndex;
-
             final item = _items.removeAt(oldIndex);
             _items.insert(newIndex, item);
           });
@@ -43,8 +37,8 @@ class _RuleListScreenState extends State<RuleListScreen> {
         itemBuilder: (BuildContext context, int index) {
           final Rule item = _items[index];
           return ListTile(
-            key: Key('${item.displayOrder}'),
-            leading: Text('${item.displayOrder}'),
+            key: Key(index.toString()),
+            leading: Text((index + 1).toString()),
             title: Text(
               item.content,
               maxLines: 3,
@@ -54,7 +48,10 @@ class _RuleListScreenState extends State<RuleListScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => RuleDetailScreen(rule: item),
+                  builder: (context) => RuleDetailScreen(
+                    index: index,
+                    rule: item,
+                  ),
                 ),
               );
             },
