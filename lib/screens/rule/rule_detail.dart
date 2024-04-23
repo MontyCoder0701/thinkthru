@@ -21,7 +21,7 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.index.toString()),
+        title: Text((widget.index + 1).toString()),
         actions: [
           IconButton(
             onPressed: () => print('delete'),
