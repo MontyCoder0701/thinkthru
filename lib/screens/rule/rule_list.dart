@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '/models/rule.dart';
+import '../../providers/rule/rule.dart';
 import 'rule_detail.dart';
 
 class RuleListScreen extends StatefulWidget {
@@ -11,10 +12,7 @@ class RuleListScreen extends StatefulWidget {
 }
 
 class _RuleListScreenState extends State<RuleListScreen> {
-  final List<Rule> _items = [
-    Rule(content: 'This is the first rule example'),
-    Rule(content: ' This is the second rule example'),
-  ];
+  late final _ruleList = context.select((RuleProvider i) => i.resources);
 
   @override
   Widget build(BuildContext context) {
@@ -29,18 +27,18 @@ class _RuleListScreenState extends State<RuleListScreen> {
               newIndex -= 1;
             }
 
-            final item = _items.removeAt(oldIndex);
-            _items.insert(newIndex, item);
+            final rule = _ruleList.removeAt(oldIndex);
+            _ruleList.insert(newIndex, rule);
           });
         },
-        itemCount: _items.length,
+        itemCount: _ruleList.length,
         itemBuilder: (BuildContext context, int index) {
-          final Rule item = _items[index];
+          final rule = _ruleList[index];
           return ListTile(
             key: Key(index.toString()),
             leading: Text((index + 1).toString()),
             title: Text(
-              item.content,
+              rule.content,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
@@ -50,7 +48,7 @@ class _RuleListScreenState extends State<RuleListScreen> {
                 MaterialPageRoute(
                   builder: (context) => RuleDetailScreen(
                     index: index,
-                    rule: item,
+                    rule: rule,
                   ),
                 ),
               );
