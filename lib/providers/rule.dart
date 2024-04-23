@@ -9,4 +9,8 @@ class RuleProvider with ChangeNotifier {
   ];
 
   List<Rule> get resources => _resources;
+
+  void createOne(Rule rule) {
+    _resources.add(rule);
+  }
 }

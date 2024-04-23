@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/rule.dart';
+import 'rule_create.dart';
 import 'rule_detail.dart';
 
 class RuleListScreen extends StatefulWidget {
@@ -12,6 +13,7 @@ class RuleListScreen extends StatefulWidget {
 }
 
 class _RuleListScreenState extends State<RuleListScreen> {
+  late final _ruleProvider = context.read<RuleProvider>();
   late final _ruleList = context.select((RuleProvider i) => i.resources);
 
   @override
@@ -57,7 +59,15 @@ class _RuleListScreenState extends State<RuleListScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => print('Add new rule'),
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RuleCreateScreen(),
+            ),
+          );
+          setState(() {});
+        },
         child: const Icon(Icons.add),
       ),
     );
