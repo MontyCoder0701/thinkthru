@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/rule/rule.dart';
+import '../../providers/rule.dart';
 import 'rule_detail.dart';
 
 class RuleListScreen extends StatefulWidget {

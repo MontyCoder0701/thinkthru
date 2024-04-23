@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'providers/rule/rule.dart';
+import 'providers/rule.dart';
+import 'providers/thought.dart';
 import 'screens/home.dart';
 
 void main() {
@@ -9,6 +10,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => RuleProvider()),
+        ChangeNotifierProvider(create: (_) => ThoughtProvider()),
       ],
       child: const MyApp(),
     ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/thought.dart';
 import 'thought_detail.dart';
 
 class ThoughtListScreen extends StatefulWidget {
@@ -10,18 +12,22 @@ class ThoughtListScreen extends StatefulWidget {
 }
 
 class _ThoughtListScreenState extends State<ThoughtListScreen> {
+  late final _thoughtList = context.select((ThoughtProvider i) => i.resources);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('My Thoughts'),
       ),
-      body: ListView(
-        children: [
-          ListTile(
-            title: Text('Example Title'),
+      body: ListView.builder(
+        itemCount: _thoughtList.length,
+        itemBuilder: (BuildContext context, int index) {
+          final thought = _thoughtList[index];
+          return ListTile(
+            title: Text(thought.title),
             subtitle: Text(
-              'Hello, my name is Soo. Today I will be creating this application in Flutter. I love creating new things!',
+              thought.summary,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -34,8 +40,8 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
                 ),
               );
             },
-          ),
-        ],
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => print('Add new thought'),
