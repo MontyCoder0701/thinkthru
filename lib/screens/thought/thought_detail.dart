@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../models/thought.dart';
+
 class ThoughtDetailScreen extends StatefulWidget {
-  const ThoughtDetailScreen({super.key});
+  final Thought thought;
+
+  const ThoughtDetailScreen({
+    required this.thought,
+    super.key,
+  });
 
   @override
   State<ThoughtDetailScreen> createState() => _ThoughtDetailScreenState();
@@ -12,7 +19,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Example Title'),
+        title: Text(widget.thought.title),
         actions: [
           IconButton(
             onPressed: () => print('delete'),
@@ -33,16 +40,15 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
           ),
           _buildThoughtDetailField(
             title: 'Summary',
-            initialValue:
-                'Hello, my name is Soo. Today I will be creating this application in Flutter. I love creating new things!',
+            initialValue: widget.thought.summary,
           ),
           _buildThoughtDetailField(
             title: 'Pros',
-            initialValue: 'This will have the pros of the thought',
+            initialValue: widget.thought.pro,
           ),
           _buildThoughtDetailField(
             title: 'Cons',
-            initialValue: 'This will have the cons of the thought',
+            initialValue: widget.thought.con,
           ),
         ],
       ),

@@ -36,7 +36,9 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ThoughtDetailScreen(),
+                  builder: (context) => ThoughtDetailScreen(
+                    thought: thought,
+                  ),
                 ),
               );
             },
