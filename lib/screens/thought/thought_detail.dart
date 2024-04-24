@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/thought.dart';
 import '../../providers/thought.dart';
+import 'thought_edit.dart';
 
 class ThoughtDetailScreen extends StatefulWidget {
   final Thought thought;
@@ -30,7 +31,16 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
             icon: Icon(Icons.delete),
           ),
           IconButton(
-            onPressed: () => print('edit'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ThoughtEditScreen(
+                    thought: widget.thought,
+                  ),
+                ),
+              );
+            },
             icon: Icon(Icons.edit),
           ),
         ],

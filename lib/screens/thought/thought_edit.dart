@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../models/thought.dart';
-import '../../providers/thought.dart';
 
-class ThoughtCreateScreen extends StatefulWidget {
-  const ThoughtCreateScreen({super.key});
+class ThoughtEditScreen extends StatefulWidget {
+  final Thought thought;
+
+  const ThoughtEditScreen({
+    required this.thought,
+    super.key,
+  });
 
   @override
-  State<ThoughtCreateScreen> createState() => _ThoughtCreateScreenState();
+  State<ThoughtEditScreen> createState() => _ThoughtEditScreenState();
 }
 
-class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
-  late final _thoughtProvider = context.read<ThoughtProvider>();
-
-  final _thought = Thought();
+class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
   final _key = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create New Thought'),
+        title: Text('Edit Thought'),
         actions: [
           IconButton(
             onPressed: () {
               if (_key.currentState!.validate()) {
                 _key.currentState!.save();
-                _thoughtProvider.createOne(_thought);
+                Navigator.pop(context);
                 Navigator.pop(context);
               }
             },
@@ -42,7 +42,8 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
             _buildThoughtCreateField(
               title: 'Title',
               maxLines: 1,
-              onSaved: (v) => _thought.title = v!,
+              initialValue: widget.thought.title,
+              onSaved: (v) => widget.thought.title = v!,
               validator: (String? value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter some text for the title';
@@ -52,15 +53,18 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
             ),
             _buildThoughtCreateField(
               title: 'Summary',
-              onSaved: (v) => _thought.summary = v!,
+              initialValue: widget.thought.summary,
+              onSaved: (v) => widget.thought.summary = v!,
             ),
             _buildThoughtCreateField(
               title: 'Pros',
-              onSaved: (v) => _thought.pro = v!,
+              initialValue: widget.thought.pro,
+              onSaved: (v) => widget.thought.pro = v!,
             ),
             _buildThoughtCreateField(
               title: 'Cons',
-              onSaved: (v) => _thought.con = v!,
+              initialValue: widget.thought.con,
+              onSaved: (v) => widget.thought.con = v!,
             ),
           ],
         ),
@@ -70,6 +74,7 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
 
   Widget _buildThoughtCreateField({
     required String title,
+    required String initialValue,
     void Function(String?)? onSaved,
     String? Function(String?)? validator,
     int maxLines = 5,
@@ -80,6 +85,7 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           child: TextFormField(
+            initialValue: initialValue,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
