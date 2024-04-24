@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../helpers/helpers.dart';
 import '../../providers/thought.dart';
 import 'thought_create.dart';
 import 'thought_detail.dart';
@@ -32,7 +33,7 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            trailing: Text('1998.07.01'),
+            trailing: Text(formatDate(thought.createdAt!)),
             onTap: () async {
               await Navigator.push(
                 context,
