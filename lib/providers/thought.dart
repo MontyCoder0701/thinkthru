@@ -20,6 +20,10 @@ class ThoughtProvider with ChangeNotifier {
 
   List<Thought> get resources => _resources;
 
+  void createOne(Thought thought) {
+    _resources.insert(0, thought);
+  }
+
   void deleteOne(Thought thought) {
     _resources.remove(thought);
   }

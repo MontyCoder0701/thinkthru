@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/thought.dart';
+import 'thought_create.dart';
 import 'thought_detail.dart';
 
 class ThoughtListScreen extends StatefulWidget {
@@ -49,7 +50,17 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => print('Add new thought'),
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ThoughtCreateScreen(),
+            ),
+          );
+          setState(() {
+            /* rule created */
+          });
+        },
         child: const Icon(Icons.add),
       ),
     );
