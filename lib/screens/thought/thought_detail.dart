@@ -38,9 +38,16 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
       body: ListView(
         children: [
           ListTile(
-            title: Text('Liked'),
-            subtitle: Text('3 times'),
-            trailing: Icon(Icons.favorite),
+            title: Text('Thought through'),
+            subtitle: Text('${widget.thought.thoughtCount} times'),
+            trailing: IconButton(
+              icon: Icon(Icons.favorite),
+              onPressed: () {
+                setState(() {
+                  ++widget.thought.thoughtCount;
+                });
+              },
+            ),
           ),
           _buildThoughtDetailField(
             title: 'Summary',

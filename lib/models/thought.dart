@@ -5,7 +5,7 @@ class Thought extends Base {
   String summary;
   String pro;
   String con;
-  final int likeCount = 0;
+  int thoughtCount = 0;
 
   Thought({
     this.title = '',
