@@ -19,4 +19,8 @@ class ThoughtProvider with ChangeNotifier {
   ];
 
   List<Thought> get resources => _resources;
+
+  void deleteOne(Thought thought) {
+    _resources.remove(thought);
+  }
 }

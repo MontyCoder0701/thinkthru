@@ -32,8 +32,8 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
               overflow: TextOverflow.ellipsis,
             ),
             trailing: Text('1998.07.01'),
-            onTap: () {
-              Navigator.push(
+            onTap: () async {
+              await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ThoughtDetailScreen(
@@ -41,6 +41,9 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
                   ),
                 ),
               );
+              setState(() {
+                /* thought updated or deleted */
+              });
             },
           );
         },

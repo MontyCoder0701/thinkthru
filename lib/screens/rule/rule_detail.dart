@@ -28,10 +28,7 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
         title: Text((widget.index + 1).toString()),
         actions: [
           IconButton(
-            onPressed: () {
-              _ruleProvider.deleteOne(widget.rule);
-              Navigator.pop(context);
-            },
+            onPressed: () => _handleDialogOpen(),
             icon: Icon(Icons.delete),
           ),
           IconButton(
@@ -59,6 +56,41 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> _handleDialogOpen() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete Rule?'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Are you sure you want to delete this rule?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: Text('Delete'),
+              onPressed: () {
+                _ruleProvider.deleteOne(widget.rule);
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

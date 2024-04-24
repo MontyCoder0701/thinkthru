@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/thought.dart';
+import '../../providers/thought.dart';
 
 class ThoughtDetailScreen extends StatefulWidget {
   final Thought thought;
@@ -15,6 +17,8 @@ class ThoughtDetailScreen extends StatefulWidget {
 }
 
 class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
+  late final _thoughtProvider = context.read<ThoughtProvider>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +26,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
         title: Text(widget.thought.title),
         actions: [
           IconButton(
-            onPressed: () => print('delete'),
+            onPressed: () => _handleDialogOpen(),
             icon: Icon(Icons.delete),
           ),
           IconButton(
@@ -78,6 +82,41 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  Future<void> _handleDialogOpen() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete Thought?'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Are you sure you want to delete this thought?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              child: Text('Delete'),
+              onPressed: () {
+                _thoughtProvider.deleteOne(widget.thought);
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
