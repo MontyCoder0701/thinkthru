@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/rule.dart';
 import '../../providers/rule.dart';
+import 'rule_edit.dart';
 
 class RuleDetailScreen extends StatefulWidget {
   final int index;
@@ -32,7 +33,16 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
             icon: Icon(Icons.delete),
           ),
           IconButton(
-            onPressed: () => print('edit'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RuleEditScreen(
+                    rule: widget.rule,
+                  ),
+                ),
+              );
+            },
             icon: Icon(Icons.edit),
           ),
         ],
