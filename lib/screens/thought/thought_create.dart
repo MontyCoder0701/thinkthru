@@ -24,10 +24,10 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
         title: Text('Create New Thought'),
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               if (_key.currentState!.validate()) {
                 _key.currentState!.save();
-                _thoughtProvider.createOne(_thought);
+                await _thoughtProvider.createOne(_thought);
                 Navigator.pop(context);
               }
             },

@@ -17,21 +17,37 @@ abstract class LocalRepository<T extends BaseModel> {
     final path = join(databasePath, 'local.db');
     _instance = await openDatabase(
       path,
-      version: 1,
+      version: 3,
       onCreate: (Database db, int version) async {
         await db.execute(
-          'CREATE TABLE rule(id INTEGER PRIMARY KEY, content TEXT, created_at DATETIME)',
+          'CREATE TABLE rule(id INTEGER PRIMARY KEY, content TEXT, createdAt DATETIME)',
+        );
+        await db.execute(
+          'CREATE TABLE thought(id INTEGER PRIMARY KEY, title TEXT, summary TEXT, pro TEXT, con TEXT, thoughtCount INTEGER, createdAt DATETIME)',
+        );
+      },
+      onUpgrade: (Database db, int oldVersion, int newVersion) async {
+        await db.execute(
+          'ALTER TABLE rule RENAME COLUMN created_at TO createdAt',
         );
       },
     );
   }
 
-  Future<int> createOne(T item) async {
-    return await _instance.insert(
+  Future<T> createOne(T item) async {
+    final id = await _instance.insert(
       key,
       toJson(item),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+
+    await _instance.execute(
+      'UPDATE $key SET createdAt = datetime(\'now\') WHERE id = $id',
+    );
+
+    item.id = id;
+    item.createdAt = DateTime.now();
+    return item;
   }
 
   Future<List<T>> getMany() async {
@@ -48,7 +64,7 @@ abstract class LocalRepository<T extends BaseModel> {
     );
   }
 
-  Future<void> deleteOneRule(int id) async {
+  Future<void> deleteOne(int id) async {
     await _instance.delete(
       key,
       where: 'id = ?',

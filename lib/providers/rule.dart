@@ -16,17 +16,16 @@ class RuleProvider with ChangeNotifier {
   }
 
   Future<void> createOne(Rule rule) async {
-    rule.createdAt = DateTime.now();
     final result = await _repository.createOne(rule);
-    _resources.add(rule..id = result);
+    _resources.add(result);
   }
 
-  Future<void> deleteOne(Rule rule) async {
-    await _resources.remove(rule);
-    _repository.deleteOneRule(rule.id!);
+  void deleteOne(Rule rule) {
+    _resources.remove(rule);
+    _repository.deleteOne(rule.id!);
   }
 
-  Future<void> updateOne(Rule rule) async {
+  void updateOne(Rule rule) {
     _repository.updateOne(rule);
   }
 }

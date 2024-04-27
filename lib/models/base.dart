@@ -4,6 +4,6 @@ abstract class BaseModel {
   @JsonKey(includeToJson: false)
   int? id;
 
-  @JsonKey(name: 'created_at', includeToJson: false)
+  @JsonKey(includeToJson: false)
   DateTime? createdAt;
 }

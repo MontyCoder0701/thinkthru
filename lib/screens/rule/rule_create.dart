@@ -24,10 +24,10 @@ class _RuleCreateScreenState extends State<RuleCreateScreen> {
         title: Text('Create New Rule'),
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               if (_key.currentState!.validate()) {
                 _key.currentState!.save();
-                _ruleProvider.createOne(_rule);
+                await _ruleProvider.createOne(_rule);
                 Navigator.pop(context);
               }
             },

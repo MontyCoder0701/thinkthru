@@ -14,10 +14,19 @@ class ThoughtListScreen extends StatefulWidget {
 }
 
 class _ThoughtListScreenState extends State<ThoughtListScreen> {
-  late final _thoughtList = context.select((ThoughtProvider i) => i.resources);
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final _thoughtProvider = context.read<ThoughtProvider>();
+      _thoughtProvider.getMany();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final _thoughtList = context.watch<ThoughtProvider>().resources;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('My Thoughts'),

@@ -27,4 +27,9 @@ class Thought extends BaseModel {
     this.pro = '',
     this.con = '',
   });
+
+  factory Thought.fromJson(Map<String, dynamic> json) =>
+      _$ThoughtFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ThoughtToJson(this);
 }
