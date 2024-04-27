@@ -13,9 +13,9 @@ Thought _$ThoughtFromJson(Map<String, dynamic> json) => Thought(
       con: json['con'] as String? ?? '',
     )
       ..id = json['id'] as String?
-      ..createdAt = json['createdAt'] == null
+      ..createdAt = json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String)
+          : DateTime.parse(json['created_at'] as String)
       ..thoughtCount = (json['thoughtCount'] as num).toInt();
 
 Map<String, dynamic> _$ThoughtToJson(Thought instance) => <String, dynamic>{
