@@ -28,12 +28,12 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
   Widget build(BuildContext context) {
     final thoughtList = context.watch<ThoughtProvider>().resources;
 
-    if (thoughtList.isEmpty) {
-      return CustomEmpty(text: 'Create a New Thought!');
-    }
+    Widget buildBody() {
+      if (thoughtList.isEmpty) {
+        return CustomEmpty(text: 'Create a New Thought!');
+      }
 
-    return Scaffold(
-      body: ListView.builder(
+      return ListView.builder(
         itemCount: thoughtList.length,
         itemBuilder: (BuildContext context, int index) {
           final thought = thoughtList[index];
@@ -60,7 +60,11 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
             },
           );
         },
-      ),
+      );
+    }
+
+    return Scaffold(
+      body: buildBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(

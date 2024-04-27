@@ -27,12 +27,12 @@ class _RuleListScreenState extends State<RuleListScreen> {
   Widget build(BuildContext context) {
     final ruleList = context.watch<RuleProvider>().resources;
 
-    if (ruleList.isEmpty) {
-      return CustomEmpty(text: 'Create a New Rule!');
-    }
+    Widget buildBody() {
+      if (ruleList.isEmpty) {
+        return CustomEmpty(text: 'Create a New Rule!');
+      }
 
-    return Scaffold(
-      body: ReorderableListView.builder(
+      return ReorderableListView.builder(
         onReorder: (int oldIndex, int newIndex) {
           setState(() {
             if (oldIndex < newIndex) {
@@ -70,7 +70,11 @@ class _RuleListScreenState extends State<RuleListScreen> {
             },
           );
         },
-      ),
+      );
+    }
+
+    return Scaffold(
+      body: buildBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.push(
