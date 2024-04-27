@@ -9,7 +9,7 @@ part of 'rule.dart';
 Rule _$RuleFromJson(Map<String, dynamic> json) => Rule(
       content: json['content'] as String,
     )
-      ..id = json['id'] as String?
+      ..id = (json['id'] as num?)?.toInt()
       ..createdAt = json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String);

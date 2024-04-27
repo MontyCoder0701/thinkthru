@@ -13,10 +13,19 @@ class RuleListScreen extends StatefulWidget {
 }
 
 class _RuleListScreenState extends State<RuleListScreen> {
-  late final _ruleList = context.select((RuleProvider i) => i.resources);
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final _ruleProvider = context.read<RuleProvider>();
+      _ruleProvider.getMany();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final _ruleList = context.watch<RuleProvider>().resources;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('My Rules'),

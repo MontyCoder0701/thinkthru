@@ -59,7 +59,7 @@ class DatabaseService {
     );
   }
 
-  Future<void> deleteOneRule(String id) async {
+  Future<void> deleteOneRule(int id) async {
     final db = await _databaseService.database;
     await db.delete(
       'rule',

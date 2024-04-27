@@ -12,7 +12,7 @@ Thought _$ThoughtFromJson(Map<String, dynamic> json) => Thought(
       pro: json['pro'] as String? ?? '',
       con: json['con'] as String? ?? '',
     )
-      ..id = json['id'] as String?
+      ..id = (json['id'] as num?)?.toInt()
       ..createdAt = json['created_at'] == null
           ? null
           : DateTime.parse(json['created_at'] as String)
