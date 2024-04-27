@@ -10,14 +10,14 @@ class RuleProvider with ChangeNotifier {
   List<Rule> get resources => _resources;
 
   Future<void> getMany() async {
-    final result = await _repository.getManyRule();
+    final result = await _repository.getMany();
     _resources = result;
     notifyListeners();
   }
 
   Future<void> createOne(Rule rule) async {
     rule.createdAt = DateTime.now();
-    final result = await _repository.createOneRule(rule);
+    final result = await _repository.createOne(rule);
     _resources.add(rule..id = result);
   }
 

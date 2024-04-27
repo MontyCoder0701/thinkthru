@@ -3,8 +3,14 @@ import 'package:sqflite/sqflite.dart';
 
 import '../models/models.dart';
 
-abstract class LocalRepository<T> {
+abstract class LocalRepository<T extends BaseModel> {
   static late final Database _instance;
+
+  String get key => '';
+
+  toJson() => throw UnimplementedError();
+
+  fromJson(Map<String, dynamic> json) => throw UnimplementedError();
 
   static Future<void> initialize() async {
     final databasePath = await getDatabasesPath();
@@ -20,32 +26,31 @@ abstract class LocalRepository<T> {
     );
   }
 
-  Future<int> createOneRule(Rule rule) async {
-    final db = await _instance.database;
-    return await db.insert(
-      'rule',
-      rule.toJson(),
+  Future<int> createOne(T item) async {
+    return await _instance.insert(
+      key,
+      toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
-  Future<List<Rule>> getManyRule() async {
-    final List<Map<String, dynamic>> maps = await _instance.query('rule');
-    return List.generate(maps.length, (index) => Rule.fromJson(maps[index]));
+  Future<List<T>> getMany() async {
+    final List<Map<String, dynamic>> maps = await _instance.query(key);
+    return List.generate(maps.length, (index) => fromJson(maps[index]));
   }
 
-  Future<void> updateOneRule(Rule rule) async {
+  Future<void> updateOne(T item) async {
     await _instance.update(
-      'rule',
-      rule.toJson(),
+      key,
+      toJson(),
       where: 'id = ?',
-      whereArgs: [rule.id],
+      whereArgs: [item.id],
     );
   }
 
   Future<void> deleteOneRule(int id) async {
     await _instance.delete(
-      'rule',
+      key,
       where: 'id = ?',
       whereArgs: [id],
     );
