@@ -22,56 +22,59 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.thought.title),
-        actions: [
-          IconButton(
-            onPressed: () => _handleDialogOpen(),
-            icon: Icon(Icons.delete),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ThoughtEditScreen(
-                    thought: widget.thought,
-                  ),
-                ),
-              );
-            },
-            icon: Icon(Icons.edit),
-          ),
-        ],
-      ),
-      body: ListView(
-        children: [
-          ListTile(
-            title: Text('Thought through'),
-            subtitle: Text('${widget.thought.thoughtCount} times'),
-            trailing: IconButton(
-              icon: Icon(Icons.favorite),
-              onPressed: () {
-                setState(() {
-                  ++widget.thought.thoughtCount;
-                });
-              },
+    return PopScope(
+      onPopInvoked: (_) => _thoughtProvider.updateOne(widget.thought),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.thought.title),
+          actions: [
+            IconButton(
+              onPressed: () => _handleDialogOpen(),
+              icon: Icon(Icons.delete),
             ),
-          ),
-          _buildThoughtDetailField(
-            title: 'Summary',
-            initialValue: widget.thought.summary,
-          ),
-          _buildThoughtDetailField(
-            title: 'Pros',
-            initialValue: widget.thought.pro,
-          ),
-          _buildThoughtDetailField(
-            title: 'Cons',
-            initialValue: widget.thought.con,
-          ),
-        ],
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ThoughtEditScreen(
+                      thought: widget.thought,
+                    ),
+                  ),
+                );
+              },
+              icon: Icon(Icons.edit),
+            ),
+          ],
+        ),
+        body: ListView(
+          children: [
+            ListTile(
+              title: Text('Thought through'),
+              subtitle: Text('${widget.thought.thoughtCount} times'),
+              trailing: IconButton(
+                icon: Icon(Icons.favorite),
+                onPressed: () {
+                  setState(() {
+                    ++widget.thought.thoughtCount;
+                  });
+                },
+              ),
+            ),
+            _buildThoughtDetailField(
+              title: 'Summary',
+              initialValue: widget.thought.summary,
+            ),
+            _buildThoughtDetailField(
+              title: 'Pros',
+              initialValue: widget.thought.pro,
+            ),
+            _buildThoughtDetailField(
+              title: 'Cons',
+              initialValue: widget.thought.con,
+            ),
+          ],
+        ),
       ),
     );
   }
