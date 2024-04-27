@@ -8,7 +8,7 @@ abstract class LocalRepository<T extends BaseModel> {
 
   String get key => '';
 
-  toJson() => throw UnimplementedError();
+  toJson(T item) => throw UnimplementedError();
 
   fromJson(Map<String, dynamic> json) => throw UnimplementedError();
 
@@ -29,7 +29,7 @@ abstract class LocalRepository<T extends BaseModel> {
   Future<int> createOne(T item) async {
     return await _instance.insert(
       key,
-      toJson(),
+      toJson(item),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
@@ -42,7 +42,7 @@ abstract class LocalRepository<T extends BaseModel> {
   Future<void> updateOne(T item) async {
     await _instance.update(
       key,
-      toJson(),
+      toJson(item),
       where: 'id = ?',
       whereArgs: [item.id],
     );

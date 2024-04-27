@@ -25,4 +25,8 @@ class RuleProvider with ChangeNotifier {
     await _resources.remove(rule);
     _repository.deleteOneRule(rule.id!);
   }
+
+  Future<void> updateOne(Rule rule) async {
+    _repository.updateOne(rule);
+  }
 }

@@ -6,7 +6,7 @@ class RuleRepository extends LocalRepository<Rule> {
   get key => 'rule';
 
   @override
-  toJson() => this.toJson();
+  toJson(item) => item.toJson();
 
   @override
   fromJson(Map<String, dynamic> json) => Rule.fromJson(json);

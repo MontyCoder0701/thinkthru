@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
+import '../../providers/rule.dart';
 
 class RuleEditScreen extends StatefulWidget {
   final Rule rule;
@@ -15,6 +17,8 @@ class RuleEditScreen extends StatefulWidget {
 }
 
 class _RuleEditScreenState extends State<RuleEditScreen> {
+  late final _ruleProvider = context.read<RuleProvider>();
+
   final _key = GlobalKey<FormState>();
 
   @override
@@ -27,6 +31,7 @@ class _RuleEditScreenState extends State<RuleEditScreen> {
             onPressed: () {
               if (_key.currentState!.validate()) {
                 _key.currentState!.save();
+                _ruleProvider.updateOne(widget.rule);
                 Navigator.pop(context);
                 Navigator.pop(context);
               }
