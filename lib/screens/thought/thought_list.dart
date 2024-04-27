@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../helpers/helpers.dart';
 import '../../providers/providers.dart';
+import '../common/common.dart';
 import 'thought_create.dart';
 import 'thought_detail.dart';
 
@@ -25,13 +26,17 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _thoughtList = context.watch<ThoughtProvider>().resources;
+    final thoughtList = context.watch<ThoughtProvider>().resources;
+
+    if (thoughtList.isEmpty) {
+      return CustomEmpty(text: 'Create a New Thought!');
+    }
 
     return Scaffold(
       body: ListView.builder(
-        itemCount: _thoughtList.length,
+        itemCount: thoughtList.length,
         itemBuilder: (BuildContext context, int index) {
-          final thought = _thoughtList[index];
+          final thought = thoughtList[index];
           return ListTile(
             title: Text(thought.title),
             subtitle: Text(

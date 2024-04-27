@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/providers.dart';
+import '../common/common.dart';
 import 'rule_create.dart';
 import 'rule_detail.dart';
 
@@ -24,7 +25,11 @@ class _RuleListScreenState extends State<RuleListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _ruleList = context.watch<RuleProvider>().resources;
+    final ruleList = context.watch<RuleProvider>().resources;
+
+    if (ruleList.isEmpty) {
+      return CustomEmpty(text: 'Create a New Rule!');
+    }
 
     return Scaffold(
       body: ReorderableListView.builder(
@@ -34,13 +39,13 @@ class _RuleListScreenState extends State<RuleListScreen> {
               newIndex -= 1;
             }
 
-            final rule = _ruleList.removeAt(oldIndex);
-            _ruleList.insert(newIndex, rule);
+            final rule = ruleList.removeAt(oldIndex);
+            ruleList.insert(newIndex, rule);
           });
         },
-        itemCount: _ruleList.length,
+        itemCount: ruleList.length,
         itemBuilder: (BuildContext context, int index) {
-          final rule = _ruleList[index];
+          final rule = ruleList[index];
           return ListTile(
             key: Key(index.toString()),
             leading: Text((index + 1).toString()),
