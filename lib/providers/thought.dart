@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../models/thought.dart';
+import '../models/models.dart';
 
 class ThoughtProvider with ChangeNotifier {
   List<Thought> _resources = [];

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/thought.dart';
+import '../../models/models.dart';
 
 class ThoughtEditScreen extends StatefulWidget {
   final Thought thought;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/thought.dart';
+import '../../models/models.dart';
 import '../../providers/thought.dart';
 import 'thought_edit.dart';
 

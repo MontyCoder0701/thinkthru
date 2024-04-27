@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/rule.dart';
+import '../../models/models.dart';
 
 class RuleEditScreen extends StatefulWidget {
   final Rule rule;

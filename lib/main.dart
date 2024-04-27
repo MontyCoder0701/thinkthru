@@ -3,9 +3,13 @@ import 'package:provider/provider.dart';
 
 import 'providers/rule.dart';
 import 'providers/thought.dart';
+import 'repositories/local.dart';
 import 'screens/home.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalRepository.initialize();
+
   runApp(
     MultiProvider(
       providers: [

@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-abstract class Base {
+abstract class BaseModel {
   @JsonKey(includeToJson: false)
   int? id;
 

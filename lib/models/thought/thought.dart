@@ -1,11 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'base.dart';
+import '../base.dart';
 
 part 'thought.g.dart';
 
 @JsonSerializable()
-class Thought extends Base {
+class Thought extends BaseModel {
   @JsonKey()
   String title;
 
