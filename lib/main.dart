@@ -12,7 +12,12 @@ Future<void> main() async {
   await LocalRepository.initialize();
   await SharedPreferencesRepository.initialize();
 
+  final sharedPreferencesRepository = SharedPreferencesRepository();
+  final isLocked = sharedPreferencesRepository.getBool('isLocked');
+
   final accountProvider = AccountProvider();
+  accountProvider.isLocked = isLocked ?? false;
+
   if (accountProvider.isLocked) {
     final auth = LocalAuthentication();
     await auth.authenticate(
