@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/rule.dart';
+import '../../providers/providers.dart';
 import 'rule_create.dart';
 import 'rule_detail.dart';
 

@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 
-import 'providers/rule.dart';
-import 'providers/thought.dart';
+import 'providers/providers.dart';
 import 'repositories/local.dart';
+import 'repositories/shared_preferences.dart';
 import 'screens/home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalRepository.initialize();
+  await SharedPreferencesRepository.initialize();
+
+  final accountProvider = AccountProvider();
+  if (accountProvider.isLocked) {
+    final auth = LocalAuthentication();
+    await auth.authenticate(
+      localizedReason: 'Enter Password for ThinkThru Authentication',
+    );
+  }
 
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => accountProvider),
         ChangeNotifierProvider(create: (_) => RuleProvider()),
         ChangeNotifierProvider(create: (_) => ThoughtProvider()),
       ],

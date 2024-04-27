@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
-import '../../providers/thought.dart';
+import '../../providers/providers.dart';
 import 'thought_edit.dart';
 
 class ThoughtDetailScreen extends StatefulWidget {

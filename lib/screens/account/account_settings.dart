@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/providers.dart';
 
 class AccountSettingsScreen extends StatefulWidget {
   const AccountSettingsScreen({super.key});
@@ -9,42 +12,36 @@ class AccountSettingsScreen extends StatefulWidget {
 }
 
 class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
+  late final _accountProvider = context.read<AccountProvider>();
+
   @override
   Widget build(BuildContext context) {
+    final isLocked = context.watch<AccountProvider>().isLocked;
+
     return Scaffold(
       appBar: AppBar(title: Text('Account Settings')),
       body: ListView(
         children: [
           ListTile(
-            title: Text('Lock App'),
-            trailing: Icon(Icons.lock_outline),
-            onTap: () => _handleDialogOpen(),
+            title: Text(
+              isLocked ? 'Unlock App' : 'Lock App',
+            ),
+            trailing: Icon(
+              isLocked ? Icons.lock_open_outlined : Icons.lock_outline,
+            ),
+            onTap: () async {
+              final auth = LocalAuthentication();
+              final result = await auth.authenticate(
+                localizedReason: 'Enter Password for ThinkThru Authentication',
+              );
+
+              if (result) {
+                _accountProvider.toggleIsLocked();
+              }
+            },
           )
         ],
       ),
-    );
-  }
-
-  Future<void> _handleDialogOpen() async {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Enter 4 Digit Password'),
-          content: TextFormField(
-            obscureText: true,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {},
-              child: Text('Confirm'),
-            )
-          ],
-        );
-      },
     );
   }
 }

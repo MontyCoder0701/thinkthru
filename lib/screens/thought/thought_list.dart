@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../helpers/helpers.dart';
-import '../../providers/thought.dart';
+import '../../providers/providers.dart';
 import 'thought_create.dart';
 import 'thought_detail.dart';
 
