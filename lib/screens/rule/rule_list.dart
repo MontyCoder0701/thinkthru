@@ -27,9 +27,6 @@ class _RuleListScreenState extends State<RuleListScreen> {
     final _ruleList = context.watch<RuleProvider>().resources;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('My Rules'),
-      ),
       body: ReorderableListView.builder(
         onReorder: (int oldIndex, int newIndex) {
           setState(() {

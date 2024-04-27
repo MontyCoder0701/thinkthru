@@ -28,9 +28,6 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
     final _thoughtList = context.watch<ThoughtProvider>().resources;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('My Thoughts'),
-      ),
       body: ListView.builder(
         itemCount: _thoughtList.length,
         itemBuilder: (BuildContext context, int index) {

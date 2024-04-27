@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'account/account.dart';
 import 'rule/rule.dart';
 import 'thought/thought.dart';
 
@@ -12,14 +13,30 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  List<Widget> _mainScreens = [
-    ThoughtListScreen(),
-    RuleListScreen(),
-  ];
+  List<String> _titles = ['My Thoughts', 'My Rules'];
+  List<Widget> _mainScreens = [ThoughtListScreen(), RuleListScreen()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(_titles[_selectedIndex]),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AccountSettingsScreen(),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.account_circle_outlined,
+            ),
+          ),
+        ],
+      ),
       body: _mainScreens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
