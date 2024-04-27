@@ -25,6 +25,7 @@ class DatabaseService {
     final path = join(databasePath, 'local.db');
     return await openDatabase(
       path,
+      version: 1,
       onCreate: (Database db, int version) async {
         await db.execute(
           'CREATE TABLE rule(id INTEGER PRIMARY KEY, content TEXT, created_at DATETIME)',
@@ -33,9 +34,9 @@ class DatabaseService {
     );
   }
 
-  Future<void> createOneRule(Rule rule) async {
+  Future<int> createOneRule(Rule rule) async {
     final db = await _databaseService.database;
-    await db.insert(
+    return await db.insert(
       'rule',
       rule.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
@@ -58,7 +59,7 @@ class DatabaseService {
     );
   }
 
-  Future<void> deleteOneRule(int id) async {
+  Future<void> deleteOneRule(String id) async {
     final db = await _databaseService.database;
     await db.delete(
       'rule',
