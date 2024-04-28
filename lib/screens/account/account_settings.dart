@@ -24,21 +24,22 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
         children: [
           ListTile(
             title: Text(
-              isLocked ? 'Unlock App' : 'Lock App',
+              isLocked ? 'Lock Enabled' : 'Lock Disabled',
             ),
-            trailing: Icon(
-              isLocked ? Icons.lock_open_outlined : Icons.lock_outline,
-            ),
-            onTap: () async {
-              final auth = LocalAuthentication();
-              final result = await auth.authenticate(
-                localizedReason: 'Enter Password for ThinkThru Authentication',
-              );
+            trailing: Switch(
+              value: isLocked,
+              onChanged: (bool value) async {
+                final auth = LocalAuthentication();
+                final result = await auth.authenticate(
+                  localizedReason:
+                      'Enter Password for ThinkThru Authentication',
+                );
 
-              if (result) {
-                _accountProvider.toggleIsLocked();
-              }
-            },
+                if (result) {
+                  _accountProvider.toggleIsLocked();
+                }
+              },
+            ),
           )
         ],
       ),
