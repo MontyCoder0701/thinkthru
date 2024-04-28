@@ -100,6 +100,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
             onTapOutside: (_) => FocusScope.of(context).unfocus(),
           ),
         ),
+        SizedBox(height: 20.0),
       ],
     );
   }

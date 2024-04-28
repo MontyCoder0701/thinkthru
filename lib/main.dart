@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
         splashColor: CustomColorScheme.light.primaryContainer,
         appBarTheme: AppBarTheme(
           centerTitle: false,
-          iconTheme: IconThemeData(
+          actionsIconTheme: IconThemeData(
             color: CustomColorScheme.light.primary,
           ),
         ),

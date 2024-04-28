@@ -89,6 +89,7 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
             onTapOutside: (_) => FocusScope.of(context).unfocus(),
           ),
         ),
+        SizedBox(height: 20.0),
       ],
     );
   }
