@@ -26,11 +26,6 @@ abstract class LocalRepository<T extends BaseModel> {
           'CREATE TABLE thought(id INTEGER PRIMARY KEY, title TEXT, summary TEXT, pro TEXT, con TEXT, thoughtCount INTEGER, createdAt DATETIME)',
         );
       },
-      onUpgrade: (Database db, int oldVersion, int newVersion) async {
-        await db.execute(
-          'ALTER TABLE rule ADD COLUMN \'order\' INTEGER DEFAULT 0',
-        );
-      },
     );
   }
 
