@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +14,7 @@ class AccountSettingsScreen extends StatefulWidget {
 
 class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
   late final theme = Theme.of(context);
+  late final scaffoldMessenger = ScaffoldMessenger.of(context);
   late final _accountProvider = context.read<AccountProvider>();
 
   @override
@@ -31,13 +33,26 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
               value: isLocked,
               onChanged: (bool value) async {
                 final auth = LocalAuthentication();
-                final result = await auth.authenticate(
-                  localizedReason:
-                      'Enter Password for ThinkThru Authentication',
-                );
 
-                if (result) {
-                  _accountProvider.toggleIsLocked();
+                try {
+                  final result = await auth.authenticate(
+                    localizedReason:
+                        'Enter Password for ThinkThru Authentication',
+                  );
+
+                  if (result) {
+                    _accountProvider.toggleIsLocked();
+                  }
+                } on PlatformException {
+                  scaffoldMessenger.removeCurrentSnackBar();
+                  scaffoldMessenger.showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'This device doesn\'t have authentication. \n'
+                        'Set up authentication first in your settings.',
+                      ),
+                    ),
+                  );
                 }
               },
             ),

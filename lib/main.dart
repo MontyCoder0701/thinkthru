@@ -86,6 +86,9 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        snackBarTheme: SnackBarThemeData(
+          backgroundColor: CustomColorScheme.light.primary,
+        ),
       ),
       home: const HomeScreen(),
     );
