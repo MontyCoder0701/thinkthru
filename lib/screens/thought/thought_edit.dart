@@ -37,36 +37,38 @@ class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
       ),
       body: Form(
         key: _key,
-        child: ListView(
-          children: [
-            _buildThoughtCreateField(
-              title: 'Title',
-              maxLines: 1,
-              initialValue: widget.thought.title,
-              onSaved: (v) => widget.thought.title = v!,
-              validator: (String? value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text for the title';
-                }
-                return null;
-              },
-            ),
-            _buildThoughtCreateField(
-              title: 'Summary',
-              initialValue: widget.thought.summary,
-              onSaved: (v) => widget.thought.summary = v!,
-            ),
-            _buildThoughtCreateField(
-              title: 'Pros',
-              initialValue: widget.thought.pro,
-              onSaved: (v) => widget.thought.pro = v!,
-            ),
-            _buildThoughtCreateField(
-              title: 'Cons',
-              initialValue: widget.thought.con,
-              onSaved: (v) => widget.thought.con = v!,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildThoughtCreateField(
+                title: 'Title',
+                maxLines: 1,
+                initialValue: widget.thought.title,
+                onSaved: (v) => widget.thought.title = v!,
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text for the title';
+                  }
+                  return null;
+                },
+              ),
+              _buildThoughtCreateField(
+                title: 'Summary',
+                initialValue: widget.thought.summary,
+                onSaved: (v) => widget.thought.summary = v!,
+              ),
+              _buildThoughtCreateField(
+                title: 'Pros',
+                initialValue: widget.thought.pro,
+                onSaved: (v) => widget.thought.pro = v!,
+              ),
+              _buildThoughtCreateField(
+                title: 'Cons',
+                initialValue: widget.thought.con,
+                onSaved: (v) => widget.thought.con = v!,
+              ),
+            ],
+          ),
         ),
       ),
     );
