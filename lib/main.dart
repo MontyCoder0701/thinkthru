@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -20,9 +23,14 @@ Future<void> main() async {
 
   if (accountProvider.isLocked) {
     final auth = LocalAuthentication();
-    await auth.authenticate(
-      localizedReason: 'Enter Password for ThinkThru Authentication',
-    );
+
+    try {
+      await auth.authenticate(
+        localizedReason: 'Enter Password for ThinkThru Authentication',
+      );
+    } on PlatformException {
+      exit(0);
+    }
   }
 
   runApp(
