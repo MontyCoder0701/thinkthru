@@ -31,7 +31,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
             ),
             trailing: Switch(
               value: isLocked,
-              onChanged: (bool value) async {
+              onChanged: (_) async {
                 final auth = LocalAuthentication();
 
                 try {
