@@ -15,6 +15,7 @@ class ThoughtEditScreen extends StatefulWidget {
 }
 
 class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
+  late final theme = Theme.of(context);
   final _key = GlobalKey<FormState>();
 
   @override
@@ -31,7 +32,7 @@ class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
                 Navigator.pop(context);
               }
             },
-            icon: Icon(Icons.save),
+            icon: Icon(Icons.done),
           ),
         ],
       ),

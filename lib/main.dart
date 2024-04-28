@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:thinkthru/color_scheme.dart';
 
 import 'providers/providers.dart';
 import 'repositories/local.dart';
@@ -50,19 +51,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late final theme = Theme.of(context);
-
     return MaterialApp(
       title: 'ThinkThru',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: CustomColorScheme.light,
         useMaterial3: true,
-        appBarTheme: AppBarTheme(
-          backgroundColor: theme.colorScheme.primaryContainer,
-        ),
+        splashColor: CustomColorScheme.light.primaryContainer,
+        appBarTheme: AppBarTheme(centerTitle: false),
+        navigationBarTheme: NavigationBarThemeData(elevation: 0.0),
         listTileTheme: ListTileThemeData(
           contentPadding: EdgeInsets.symmetric(horizontal: 24.0),
         ),
+        floatingActionButtonTheme:
+            FloatingActionButtonThemeData(elevation: 0.0),
       ),
       home: const HomeScreen(),
     );

@@ -30,7 +30,7 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
         actions: [
           IconButton(
             onPressed: () => _handleDialogOpen(),
-            icon: Icon(Icons.delete),
+            icon: Icon(Icons.delete_outline),
           ),
           IconButton(
             onPressed: () {
@@ -43,7 +43,7 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
                 ),
               );
             },
-            icon: Icon(Icons.edit),
+            icon: Icon(Icons.edit_outlined),
           ),
         ],
       ),

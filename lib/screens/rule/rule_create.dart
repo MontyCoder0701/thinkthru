@@ -31,7 +31,7 @@ class _RuleCreateScreenState extends State<RuleCreateScreen> {
                 Navigator.pop(context);
               }
             },
-            icon: Icon(Icons.save),
+            icon: Icon(Icons.done),
           ),
         ],
       ),

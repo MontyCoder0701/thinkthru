@@ -36,7 +36,7 @@ class _RuleEditScreenState extends State<RuleEditScreen> {
                 Navigator.pop(context);
               }
             },
-            icon: Icon(Icons.save),
+            icon: Icon(Icons.done),
           ),
         ],
       ),

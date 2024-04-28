@@ -42,11 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _selectedIndex,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.psychology_alt_outlined),
+            icon: Icon(Icons.cloud_outlined),
             label: 'Thoughts',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.gavel_outlined),
+            icon: Icon(Icons.verified_user_outlined),
             label: 'Rules',
           ),
         ],

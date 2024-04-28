@@ -31,7 +31,7 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
                 Navigator.pop(context);
               }
             },
-            icon: Icon(Icons.save),
+            icon: Icon(Icons.done),
           ),
         ],
       ),

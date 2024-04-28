@@ -30,7 +30,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
           actions: [
             IconButton(
               onPressed: () => _handleDialogOpen(),
-              icon: Icon(Icons.delete),
+              icon: Icon(Icons.delete_outline),
             ),
             IconButton(
               onPressed: () {
@@ -43,7 +43,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
                   ),
                 );
               },
-              icon: Icon(Icons.edit),
+              icon: Icon(Icons.edit_outlined),
             ),
           ],
         ),
@@ -53,7 +53,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
               title: Text('Thought through'),
               subtitle: Text('${widget.thought.thoughtCount} times'),
               trailing: IconButton(
-                icon: Icon(Icons.favorite),
+                icon: Icon(Icons.favorite_outline),
                 onPressed: () {
                   setState(() {
                     ++widget.thought.thoughtCount;
