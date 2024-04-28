@@ -31,7 +31,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
           actions: [
             IconButton(
               onPressed: () => _handleDialogOpen(),
-              icon: Icon(Icons.delete_outline),
+              icon: const Icon(Icons.delete_outline),
             ),
             IconButton(
               onPressed: () {
@@ -44,14 +44,14 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
                   ),
                 );
               },
-              icon: Icon(Icons.edit_outlined),
+              icon: const Icon(Icons.edit_outlined),
             ),
           ],
         ),
         body: ListView(
           children: [
             ListTile(
-              title: Text('Thought through'),
+              title: const Text('Thought through'),
               subtitle: Text('${widget.thought.thoughtCount} times'),
               trailing: IconButton(
                 icon: Icon(
@@ -91,7 +91,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
       children: [
         ListTile(title: Text(title)),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: TextFormField(
             readOnly: true,
             initialValue: initialValue,
@@ -100,7 +100,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
             onTapOutside: (_) => FocusScope.of(context).unfocus(),
           ),
         ),
-        SizedBox(height: 20.0),
+        const SizedBox(height: 20.0),
       ],
     );
   }
@@ -121,13 +121,13 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             TextButton(
-              child: Text('Delete'),
+              child: const Text('Delete'),
               onPressed: () {
                 _thoughtProvider.deleteOne(widget.thought);
                 Navigator.pop(context);

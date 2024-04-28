@@ -32,7 +32,7 @@ class _RuleListScreenState extends State<RuleListScreen> {
 
     Widget buildBody() {
       if (ruleList.isEmpty) {
-        return CustomEmpty(text: 'Create a New Rule!');
+        return const CustomEmpty(text: 'Create a New Rule!');
       }
 
       return ReorderableListView.builder(
@@ -86,7 +86,7 @@ class _RuleListScreenState extends State<RuleListScreen> {
           await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => RuleCreateScreen(),
+              builder: (context) => const RuleCreateScreen(),
             ),
           );
           setState(() {

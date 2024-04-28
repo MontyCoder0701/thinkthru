@@ -13,8 +13,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  List<String> _titles = ['My Thoughts', 'My Rules'];
-  List<Widget> _mainScreens = [ThoughtListScreen(), RuleListScreen()];
+  final List<String> _titles = ['My Thoughts', 'My Rules'];
+  final List<Widget> _mainScreens = [
+    const ThoughtListScreen(),
+    const RuleListScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +30,11 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AccountSettingsScreen(),
+                  builder: (context) => const AccountSettingsScreen(),
                 ),
               );
             },
-            icon: Icon(
-              Icons.account_circle_outlined,
-            ),
+            icon: const Icon(Icons.account_circle_outlined),
           ),
         ],
       ),

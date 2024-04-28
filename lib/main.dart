@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:thinkthru/color_scheme.dart';
 
+import 'color_scheme.dart';
 import 'providers/providers.dart';
 import 'repositories/local.dart';
 import 'repositories/shared_preferences.dart';
@@ -63,18 +63,23 @@ class MyApp extends StatelessWidget {
             color: CustomColorScheme.light.primary,
           ),
         ),
-        navigationBarTheme: NavigationBarThemeData(elevation: 0.0),
-        listTileTheme: ListTileThemeData(
-          contentPadding: EdgeInsets.symmetric(horizontal: 24.0),
+        navigationBarTheme: const NavigationBarThemeData(
+          elevation: 0.0,
         ),
-        floatingActionButtonTheme:
-            FloatingActionButtonThemeData(elevation: 0.0),
+        listTileTheme: const ListTileThemeData(
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 24.0,
+          ),
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          elevation: 0.0,
+        ),
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.0),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.0),
             borderSide: const BorderSide(
               color: Colors.grey,
               width: 0.0,

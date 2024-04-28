@@ -21,17 +21,20 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create New Thought'),
+        title: const Text('Create New Thought'),
         actions: [
           IconButton(
             onPressed: () async {
               if (_key.currentState!.validate()) {
                 _key.currentState!.save();
                 await _thoughtProvider.createOne(_thought);
-                Navigator.pop(context);
+
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
               }
             },
-            icon: Icon(Icons.done),
+            icon: const Icon(Icons.done),
           ),
         ],
       ),
@@ -80,7 +83,7 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
       children: [
         ListTile(title: Text(title)),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: TextFormField(
             validator: validator,
             keyboardType: TextInputType.multiline,
@@ -89,7 +92,7 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
             onTapOutside: (_) => FocusScope.of(context).unfocus(),
           ),
         ),
-        SizedBox(height: 20.0),
+        const SizedBox(height: 20.0),
       ],
     );
   }

@@ -21,24 +21,27 @@ class _RuleCreateScreenState extends State<RuleCreateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create New Rule'),
+        title: const Text('Create New Rule'),
         actions: [
           IconButton(
             onPressed: () async {
               if (_key.currentState!.validate()) {
                 _key.currentState!.save();
                 await _ruleProvider.createOne(_rule);
-                Navigator.pop(context);
+
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
               }
             },
-            icon: Icon(Icons.done),
+            icon: const Icon(Icons.done),
           ),
         ],
       ),
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(24.0),
             child: Form(
               key: _key,
               child: TextFormField(

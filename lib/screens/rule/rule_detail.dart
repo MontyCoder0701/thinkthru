@@ -30,7 +30,7 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
         actions: [
           IconButton(
             onPressed: () => _handleDialogOpen(),
-            icon: Icon(Icons.delete_outline),
+            icon: const Icon(Icons.delete_outline),
           ),
           IconButton(
             onPressed: () {
@@ -43,14 +43,14 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
                 ),
               );
             },
-            icon: Icon(Icons.edit_outlined),
+            icon: const Icon(Icons.edit_outlined),
           ),
         ],
       ),
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(24.0),
             child: TextFormField(
               readOnly: true,
               initialValue: widget.rule.content,
@@ -80,13 +80,13 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             TextButton(
-              child: Text('Delete'),
+              child: const Text('Delete'),
               onPressed: () {
                 _ruleProvider.deleteOne(widget.rule);
                 Navigator.pop(context);

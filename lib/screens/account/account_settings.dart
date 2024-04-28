@@ -20,7 +20,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
     final isLocked = context.watch<AccountProvider>().isLocked;
 
     return Scaffold(
-      appBar: AppBar(title: Text('Account Settings')),
+      appBar: AppBar(title: const Text('Account Settings')),
       body: ListView(
         children: [
           ListTile(
@@ -51,7 +51,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
               '-Friedrich Nietzsche',
               style: TextStyle(color: theme.colorScheme.outline),
             ),
-          )
+          ),
         ],
       ),
     );

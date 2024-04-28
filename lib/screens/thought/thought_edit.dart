@@ -22,7 +22,7 @@ class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Thought'),
+        title: const Text('Edit Thought'),
         actions: [
           IconButton(
             onPressed: () {
@@ -32,7 +32,7 @@ class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
                 Navigator.pop(context);
               }
             },
-            icon: Icon(Icons.done),
+            icon: const Icon(Icons.done),
           ),
         ],
       ),
@@ -86,7 +86,7 @@ class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
       children: [
         ListTile(title: Text(title)),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: TextFormField(
             initialValue: initialValue,
             validator: validator,
@@ -96,7 +96,7 @@ class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
             onTapOutside: (_) => FocusScope.of(context).unfocus(),
           ),
         ),
-        SizedBox(height: 20.0),
+        const SizedBox(height: 20.0),
       ],
     );
   }

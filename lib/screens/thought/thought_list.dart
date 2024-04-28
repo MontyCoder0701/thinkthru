@@ -19,8 +19,8 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final _thoughtProvider = context.read<ThoughtProvider>();
-      _thoughtProvider.getMany();
+      final thoughtProvider = context.read<ThoughtProvider>();
+      thoughtProvider.getMany();
     });
   }
 
@@ -30,7 +30,7 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
 
     Widget buildBody() {
       if (thoughtList.isEmpty) {
-        return CustomEmpty(text: 'Create a New Thought!');
+        return const CustomEmpty(text: 'Create a New Thought!');
       }
 
       return ListView.builder(
@@ -70,7 +70,7 @@ class _ThoughtListScreenState extends State<ThoughtListScreen> {
           await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ThoughtCreateScreen(),
+              builder: (context) => const ThoughtCreateScreen(),
             ),
           );
           setState(() {

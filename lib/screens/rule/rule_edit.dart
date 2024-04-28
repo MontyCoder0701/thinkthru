@@ -25,7 +25,7 @@ class _RuleEditScreenState extends State<RuleEditScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Rule'),
+        title: const Text('Edit Rule'),
         actions: [
           IconButton(
             onPressed: () {
@@ -36,14 +36,14 @@ class _RuleEditScreenState extends State<RuleEditScreen> {
                 Navigator.pop(context);
               }
             },
-            icon: Icon(Icons.done),
+            icon: const Icon(Icons.done),
           ),
         ],
       ),
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(24.0),
             child: Form(
               key: _key,
               child: TextFormField(
