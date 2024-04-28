@@ -7,6 +7,9 @@ part 'rule.g.dart';
 @JsonSerializable()
 class Rule extends BaseModel {
   @JsonKey()
+  int order = 0;
+
+  @JsonKey()
   String content;
 
   Rule({required this.content});

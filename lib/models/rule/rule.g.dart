@@ -12,8 +12,10 @@ Rule _$RuleFromJson(Map<String, dynamic> json) => Rule(
       ..id = (json['id'] as num?)?.toInt()
       ..createdAt = json['createdAt'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String);
+          : DateTime.parse(json['createdAt'] as String)
+      ..order = (json['order'] as num).toInt();
 
 Map<String, dynamic> _$RuleToJson(Rule instance) => <String, dynamic>{
+      'order': instance.order,
       'content': instance.content,
     };

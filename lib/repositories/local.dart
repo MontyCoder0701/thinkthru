@@ -17,10 +17,10 @@ abstract class LocalRepository<T extends BaseModel> {
     final path = join(databasePath, 'local.db');
     _instance = await openDatabase(
       path,
-      version: 3,
+      version: 4,
       onCreate: (Database db, int version) async {
         await db.execute(
-          'CREATE TABLE rule(id INTEGER PRIMARY KEY, content TEXT, createdAt DATETIME)',
+          'CREATE TABLE rule(id INTEGER PRIMARY KEY, content TEXT, order INTEGER, createdAt DATETIME)',
         );
         await db.execute(
           'CREATE TABLE thought(id INTEGER PRIMARY KEY, title TEXT, summary TEXT, pro TEXT, con TEXT, thoughtCount INTEGER, createdAt DATETIME)',
@@ -28,7 +28,7 @@ abstract class LocalRepository<T extends BaseModel> {
       },
       onUpgrade: (Database db, int oldVersion, int newVersion) async {
         await db.execute(
-          'ALTER TABLE rule RENAME COLUMN created_at TO createdAt',
+          'ALTER TABLE rule ADD COLUMN \'order\' INTEGER DEFAULT 0',
         );
       },
     );

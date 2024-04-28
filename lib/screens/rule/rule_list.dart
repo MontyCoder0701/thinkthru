@@ -54,6 +54,7 @@ class _RuleListScreenState extends State<RuleListScreen> {
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
+            trailing: Icon(Icons.drag_handle_outlined),
             onTap: () async {
               await Navigator.push(
                 context,
