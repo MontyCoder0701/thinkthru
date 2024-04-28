@@ -17,6 +17,7 @@ class RuleProvider with ChangeNotifier {
   }
 
   Future<void> createOne(Rule rule) async {
+    rule.order = _resources.length;
     final result = await _repository.createOne(rule);
     _resources.add(result);
   }
