@@ -12,6 +12,7 @@ class AccountSettingsScreen extends StatefulWidget {
 }
 
 class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
+  late final theme = Theme.of(context);
   late final _accountProvider = context.read<AccountProvider>();
 
   @override
@@ -39,6 +40,16 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
                   _accountProvider.toggleIsLocked();
                 }
               },
+            ),
+          ),
+          ListTile(
+            title: Text(
+              'To live is to suffer, to survive is to find some meaning in the suffering.',
+              style: TextStyle(color: theme.colorScheme.outline),
+            ),
+            subtitle: Text(
+              '-Friedrich Nietzsche',
+              style: TextStyle(color: theme.colorScheme.outline),
             ),
           )
         ],
