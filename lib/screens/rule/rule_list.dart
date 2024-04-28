@@ -15,16 +15,7 @@ class RuleListScreen extends StatefulWidget {
 
 class _RuleListScreenState extends State<RuleListScreen> {
   late final theme = Theme.of(context);
-  late final RuleProvider _ruleProvider;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _ruleProvider = context.read<RuleProvider>();
-      _ruleProvider.getMany();
-    });
-  }
+  late final RuleProvider _ruleProvider = context.read<RuleProvider>();
 
   @override
   Widget build(BuildContext context) {

@@ -16,15 +16,6 @@ class ThoughtListScreen extends StatefulWidget {
 
 class _ThoughtListScreenState extends State<ThoughtListScreen> {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final thoughtProvider = context.read<ThoughtProvider>();
-      thoughtProvider.getMany();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     final thoughtList = context.watch<ThoughtProvider>().resources;
 

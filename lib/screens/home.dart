@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/providers.dart';
 import 'account/account.dart';
 import 'rule/rule.dart';
 import 'thought/thought.dart';
@@ -18,6 +20,15 @@ class _HomeScreenState extends State<HomeScreen> {
     const ThoughtListScreen(),
     const RuleListScreen(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<RuleProvider>().getMany();
+      context.read<ThoughtProvider>().getMany();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
