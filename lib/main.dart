@@ -57,13 +57,30 @@ class MyApp extends StatelessWidget {
         colorScheme: CustomColorScheme.light,
         useMaterial3: true,
         splashColor: CustomColorScheme.light.primaryContainer,
-        appBarTheme: AppBarTheme(centerTitle: false),
+        appBarTheme: AppBarTheme(
+          centerTitle: false,
+          iconTheme: IconThemeData(
+            color: CustomColorScheme.light.primary,
+          ),
+        ),
         navigationBarTheme: NavigationBarThemeData(elevation: 0.0),
         listTileTheme: ListTileThemeData(
           contentPadding: EdgeInsets.symmetric(horizontal: 24.0),
         ),
         floatingActionButtonTheme:
             FloatingActionButtonThemeData(elevation: 0.0),
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: Colors.grey,
+              width: 0.0,
+            ),
+          ),
+        ),
       ),
       home: const HomeScreen(),
     );

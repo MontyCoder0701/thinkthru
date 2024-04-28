@@ -54,11 +54,6 @@ class _RuleEditScreenState extends State<RuleEditScreen> {
                   }
                   return null;
                 },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
                 keyboardType: TextInputType.multiline,
                 maxLines: 10,
                 onSaved: (v) => widget.rule.content = v!,

@@ -89,11 +89,6 @@ class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           child: TextFormField(
             initialValue: initialValue,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
             validator: validator,
             keyboardType: TextInputType.multiline,
             maxLines: maxLines,

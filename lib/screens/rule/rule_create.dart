@@ -48,11 +48,6 @@ class _RuleCreateScreenState extends State<RuleCreateScreen> {
                   }
                   return null;
                 },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
                 keyboardType: TextInputType.multiline,
                 maxLines: 10,
                 onSaved: (v) => _rule.content = v!,

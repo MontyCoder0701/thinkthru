@@ -18,6 +18,7 @@ class ThoughtDetailScreen extends StatefulWidget {
 }
 
 class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
+  late final theme = Theme.of(context);
   late final _thoughtProvider = context.read<ThoughtProvider>();
 
   @override
@@ -53,7 +54,10 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
               title: Text('Thought through'),
               subtitle: Text('${widget.thought.thoughtCount} times'),
               trailing: IconButton(
-                icon: Icon(Icons.favorite_outline),
+                icon: Icon(
+                  Icons.favorite_outline,
+                  color: theme.colorScheme.primary,
+                ),
                 onPressed: () {
                   setState(() {
                     ++widget.thought.thoughtCount;
@@ -91,11 +95,6 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
           child: TextFormField(
             readOnly: true,
             initialValue: initialValue,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
             keyboardType: TextInputType.multiline,
             maxLines: 5,
             onTapOutside: (_) => FocusScope.of(context).unfocus(),

@@ -54,11 +54,6 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
             child: TextFormField(
               readOnly: true,
               initialValue: widget.rule.content,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
               keyboardType: TextInputType.multiline,
               maxLines: 10,
               onTapOutside: (_) => FocusScope.of(context).unfocus(),
