@@ -37,32 +37,34 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
       ),
       body: Form(
         key: _key,
-        child: ListView(
-          children: [
-            _buildThoughtCreateField(
-              title: 'Title',
-              maxLines: 1,
-              onSaved: (v) => _thought.title = v!,
-              validator: (String? value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text for the title';
-                }
-                return null;
-              },
-            ),
-            _buildThoughtCreateField(
-              title: 'Summary',
-              onSaved: (v) => _thought.summary = v!,
-            ),
-            _buildThoughtCreateField(
-              title: 'Pros',
-              onSaved: (v) => _thought.pro = v!,
-            ),
-            _buildThoughtCreateField(
-              title: 'Cons',
-              onSaved: (v) => _thought.con = v!,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildThoughtCreateField(
+                title: 'Title',
+                maxLines: 1,
+                onSaved: (v) => _thought.title = v!,
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text for the title';
+                  }
+                  return null;
+                },
+              ),
+              _buildThoughtCreateField(
+                title: 'Summary',
+                onSaved: (v) => _thought.summary = v!,
+              ),
+              _buildThoughtCreateField(
+                title: 'Pros',
+                onSaved: (v) => _thought.pro = v!,
+              ),
+              _buildThoughtCreateField(
+                title: 'Cons',
+                onSaved: (v) => _thought.con = v!,
+              ),
+            ],
+          ),
         ),
       ),
     );
