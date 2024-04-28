@@ -57,6 +57,7 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
               _buildThoughtCreateField(
                 title: 'Summary',
                 onSaved: (v) => _thought.summary = v!,
+                maxLines: 2,
               ),
               _buildThoughtCreateField(
                 title: 'Pros',

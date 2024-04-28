@@ -55,6 +55,7 @@ class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
               ),
               _buildThoughtCreateField(
                 title: 'Summary',
+                maxLines: 2,
                 initialValue: widget.thought.summary,
                 onSaved: (v) => widget.thought.summary = v!,
               ),

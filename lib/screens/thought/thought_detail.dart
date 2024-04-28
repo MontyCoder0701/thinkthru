@@ -68,6 +68,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
             _buildThoughtDetailField(
               title: 'Summary',
               initialValue: widget.thought.summary,
+              maxLines: 2,
             ),
             _buildThoughtDetailField(
               title: 'Pros',
@@ -86,6 +87,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
   Widget _buildThoughtDetailField({
     required String title,
     required String initialValue,
+    int maxLines = 5,
   }) {
     return Column(
       children: [
@@ -96,7 +98,7 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
             readOnly: true,
             initialValue: initialValue,
             keyboardType: TextInputType.multiline,
-            maxLines: 5,
+            maxLines: maxLines,
             onTapOutside: (_) => FocusScope.of(context).unfocus(),
           ),
         ),
