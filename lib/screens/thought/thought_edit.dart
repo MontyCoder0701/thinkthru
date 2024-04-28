@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/models.dart';
+import '../common/common.dart';
 
 class ThoughtEditScreen extends StatefulWidget {
   final Thought thought;
@@ -41,7 +42,7 @@ class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _buildThoughtCreateField(
+              CustomInput(
                 title: 'Title',
                 maxLines: 1,
                 initialValue: widget.thought.title,
@@ -53,18 +54,18 @@ class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
                   return null;
                 },
               ),
-              _buildThoughtCreateField(
+              CustomInput(
                 title: 'Summary',
                 maxLines: 2,
                 initialValue: widget.thought.summary,
                 onSaved: (v) => widget.thought.summary = v!,
               ),
-              _buildThoughtCreateField(
+              CustomInput(
                 title: 'Pros',
                 initialValue: widget.thought.pro,
                 onSaved: (v) => widget.thought.pro = v!,
               ),
-              _buildThoughtCreateField(
+              CustomInput(
                 title: 'Cons',
                 initialValue: widget.thought.con,
                 onSaved: (v) => widget.thought.con = v!,
@@ -73,32 +74,6 @@ class _ThoughtEditScreenState extends State<ThoughtEditScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildThoughtCreateField({
-    required String title,
-    required String initialValue,
-    void Function(String?)? onSaved,
-    String? Function(String?)? validator,
-    int maxLines = 5,
-  }) {
-    return Column(
-      children: [
-        ListTile(title: Text(title)),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: TextFormField(
-            initialValue: initialValue,
-            validator: validator,
-            keyboardType: TextInputType.multiline,
-            maxLines: maxLines,
-            onSaved: onSaved,
-            onTapOutside: (_) => FocusScope.of(context).unfocus(),
-          ),
-        ),
-        const SizedBox(height: 20.0),
-      ],
     );
   }
 }

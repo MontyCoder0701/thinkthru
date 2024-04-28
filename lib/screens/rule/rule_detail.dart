@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
 import '../../providers/providers.dart';
+import '../common/common.dart';
 import 'rule_edit.dart';
 
 class RuleDetailScreen extends StatefulWidget {
@@ -51,12 +52,10 @@ class _RuleDetailScreenState extends State<RuleDetailScreen> {
         children: [
           Container(
             padding: const EdgeInsets.all(24.0),
-            child: TextFormField(
+            child: CustomInput(
               readOnly: true,
               initialValue: widget.rule.content,
-              keyboardType: TextInputType.multiline,
               maxLines: 10,
-              onTapOutside: (_) => FocusScope.of(context).unfocus(),
             ),
           ),
         ],

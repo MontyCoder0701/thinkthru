@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
 import '../../providers/providers.dart';
+import '../common/common.dart';
 
 class RuleCreateScreen extends StatefulWidget {
   const RuleCreateScreen({super.key});
@@ -44,17 +45,15 @@ class _RuleCreateScreenState extends State<RuleCreateScreen> {
             padding: const EdgeInsets.all(24.0),
             child: Form(
               key: _key,
-              child: TextFormField(
+              child: CustomInput(
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter some text for the rule';
                   }
                   return null;
                 },
-                keyboardType: TextInputType.multiline,
                 maxLines: 10,
                 onSaved: (v) => _rule.content = v!,
-                onTapOutside: (_) => FocusScope.of(context).unfocus(),
               ),
             ),
           ),

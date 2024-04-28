@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
 import '../../providers/providers.dart';
+import '../common/common.dart';
 
 class RuleEditScreen extends StatefulWidget {
   final Rule rule;
@@ -46,7 +47,7 @@ class _RuleEditScreenState extends State<RuleEditScreen> {
             padding: const EdgeInsets.all(24.0),
             child: Form(
               key: _key,
-              child: TextFormField(
+              child: CustomInput(
                 initialValue: widget.rule.content,
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
@@ -54,10 +55,8 @@ class _RuleEditScreenState extends State<RuleEditScreen> {
                   }
                   return null;
                 },
-                keyboardType: TextInputType.multiline,
                 maxLines: 10,
                 onSaved: (v) => widget.rule.content = v!,
-                onTapOutside: (_) => FocusScope.of(context).unfocus(),
               ),
             ),
           ),

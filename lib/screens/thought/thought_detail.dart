@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
 import '../../providers/providers.dart';
+import '../common/common.dart';
 import 'thought_edit.dart';
 
 class ThoughtDetailScreen extends StatefulWidget {
@@ -65,45 +66,25 @@ class _ThoughtDetailScreenState extends State<ThoughtDetailScreen> {
                 },
               ),
             ),
-            _buildThoughtDetailField(
+            CustomInput(
               title: 'Summary',
               initialValue: widget.thought.summary,
+              readOnly: true,
               maxLines: 2,
             ),
-            _buildThoughtDetailField(
+            CustomInput(
               title: 'Pros',
               initialValue: widget.thought.pro,
+              readOnly: true,
             ),
-            _buildThoughtDetailField(
+            CustomInput(
               title: 'Cons',
               initialValue: widget.thought.con,
+              readOnly: true,
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildThoughtDetailField({
-    required String title,
-    required String initialValue,
-    int maxLines = 5,
-  }) {
-    return Column(
-      children: [
-        ListTile(title: Text(title)),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: TextFormField(
-            readOnly: true,
-            initialValue: initialValue,
-            keyboardType: TextInputType.multiline,
-            maxLines: maxLines,
-            onTapOutside: (_) => FocusScope.of(context).unfocus(),
-          ),
-        ),
-        const SizedBox(height: 20.0),
-      ],
     );
   }
 

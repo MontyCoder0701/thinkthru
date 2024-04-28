@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/models.dart';
 import '../../providers/providers.dart';
+import '../common/common.dart';
 
 class ThoughtCreateScreen extends StatefulWidget {
   const ThoughtCreateScreen({super.key});
@@ -43,7 +44,7 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _buildThoughtCreateField(
+              CustomInput(
                 title: 'Title',
                 maxLines: 1,
                 onSaved: (v) => _thought.title = v!,
@@ -54,16 +55,16 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
                   return null;
                 },
               ),
-              _buildThoughtCreateField(
+              CustomInput(
                 title: 'Summary',
                 onSaved: (v) => _thought.summary = v!,
                 maxLines: 2,
               ),
-              _buildThoughtCreateField(
+              CustomInput(
                 title: 'Pros',
                 onSaved: (v) => _thought.pro = v!,
               ),
-              _buildThoughtCreateField(
+              CustomInput(
                 title: 'Cons',
                 onSaved: (v) => _thought.con = v!,
               ),
@@ -71,30 +72,6 @@ class _ThoughtCreateScreenState extends State<ThoughtCreateScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildThoughtCreateField({
-    required String title,
-    void Function(String?)? onSaved,
-    String? Function(String?)? validator,
-    int maxLines = 5,
-  }) {
-    return Column(
-      children: [
-        ListTile(title: Text(title)),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: TextFormField(
-            validator: validator,
-            keyboardType: TextInputType.multiline,
-            maxLines: maxLines,
-            onSaved: onSaved,
-            onTapOutside: (_) => FocusScope.of(context).unfocus(),
-          ),
-        ),
-        const SizedBox(height: 20.0),
-      ],
     );
   }
 }
