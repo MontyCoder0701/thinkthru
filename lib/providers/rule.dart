@@ -11,6 +11,7 @@ class RuleProvider with ChangeNotifier {
 
   Future<void> getMany() async {
     final result = await _repository.getMany();
+    result.sort((a, b) => a.order.compareTo(b.order));
     _resources = result;
     notifyListeners();
   }
@@ -27,5 +28,17 @@ class RuleProvider with ChangeNotifier {
 
   void updateOne(Rule rule) {
     _repository.updateOne(rule);
+  }
+
+  void reorder(int oldIndex, int newIndex) {
+    final oldRule = resources[oldIndex]..order = newIndex;
+    final newRule = resources[newIndex]..order = oldIndex;
+
+    _repository.updateOne(oldRule);
+    _repository.updateOne(newRule);
+
+    _resources.removeAt(oldIndex);
+    resources.insert(newIndex, oldRule);
+    notifyListeners();
   }
 }

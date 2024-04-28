@@ -14,11 +14,13 @@ class RuleListScreen extends StatefulWidget {
 }
 
 class _RuleListScreenState extends State<RuleListScreen> {
+  late final RuleProvider _ruleProvider;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final _ruleProvider = context.read<RuleProvider>();
+      _ruleProvider = context.read<RuleProvider>();
       _ruleProvider.getMany();
     });
   }
@@ -39,8 +41,7 @@ class _RuleListScreenState extends State<RuleListScreen> {
               newIndex -= 1;
             }
 
-            final rule = ruleList.removeAt(oldIndex);
-            ruleList.insert(newIndex, rule);
+            _ruleProvider.reorder(oldIndex, newIndex);
           });
         },
         itemCount: ruleList.length,
